@@ -6,15 +6,29 @@ package com.github.beichenlpl.nlutils.base.task;
  */
 public abstract class Task {
 
-    private String taskId;
+    private String taskId = this.getClass().getSimpleName() + "_" + System.currentTimeMillis();
 
-    public abstract void run();
+    private long taskCostTime;
 
-    public String getTaskId() {
+    public abstract void run() throws Exception;
+
+    public final String getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(String taskId) {
+    public final void setTaskId(String taskId) {
         this.taskId = taskId;
+    }
+
+    protected final void setTaskCostTime(long taskCostTime) {
+        this.taskCostTime = taskCostTime;
+    }
+
+    /**
+     * 获取任务耗时, 单位纳秒
+     * Obtaining task time, in nanoseconds
+     */
+    public final long getTaskCostTime() {
+        return taskCostTime;
     }
 }

@@ -1,9 +1,9 @@
-import com.github.beichenlpl.nlutils.simple.DataSource;
-import com.github.beichenlpl.nlutils.simple.SimpleSqlUtil;
-import com.github.beichenlpl.nlutils.simple.SimpleConnectionPool;
-import com.github.beichenlpl.nlutils.simple.annotation.ColName;
-import com.github.beichenlpl.nlutils.simple.annotation.TableName;
-import com.github.beichenlpl.nlutils.simple.enums.ColType;
+import com.github.beichenlpl.nlutils.sql.DataSource;
+import com.github.beichenlpl.nlutils.sql.SimpleSqlUtil;
+import com.github.beichenlpl.nlutils.sql.SimpleConnectionPool;
+import com.github.beichenlpl.nlutils.sql.annotation.ColName;
+import com.github.beichenlpl.nlutils.sql.annotation.TableName;
+import com.github.beichenlpl.nlutils.sql.enums.ColType;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,7 +1,8 @@
 package com.github.beichenlpl.nlutils.base.common;
 
-import java.util.Collection;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author beichenlpl
@@ -35,6 +36,34 @@ public class BaseUtils {
             return ((CharSequence) obj).length() == 0;
         }
 
+        if (obj instanceof Object[]) {
+            return ((Object[]) obj).length == 0;
+        }
+
         return isNull(obj);
+    }
+
+    public static boolean isNotEmpty(Object obj) {
+        return !isEmpty(obj);
+    }
+
+    public static void cpProps(Object src, Object dest, String... ignoreProps) {
+        List<String> ignorePropList = isNotNull(ignoreProps) ? Arrays.stream(ignoreProps).collect(Collectors.toList()) : null;
+
+        Field[] srcFields = src.getClass().getDeclaredFields();
+        try {
+            for (Field srcField : srcFields) {
+                if (isNotNull(ignorePropList) && ignorePropList.contains(srcField.getName())) {
+                    continue;
+                }
+
+                srcField.setAccessible(true);
+                Field destField = dest.getClass().getDeclaredField(srcField.getName());
+                destField.setAccessible(true);
+                destField.set(dest, srcField.get(src));
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException("cpProps error", e);
+        }
     }
 }
