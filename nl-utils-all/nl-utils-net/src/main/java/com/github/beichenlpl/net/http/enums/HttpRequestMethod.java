@@ -6,4 +6,8 @@ package com.github.beichenlpl.net.http.enums;
  * @since 2024.01.25
  */
 public enum HttpRequestMethod {
+    GET,
+    POST,
+    PUT,
+    DELETE;
 }
